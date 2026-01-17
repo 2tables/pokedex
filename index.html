@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pokedex</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="error">
+  <div>
+    <img
+      src="https://u.cubeupload.com/2tables/ohnoes.png"
+      style="width: 300px;"
+    /><br /><span style="font-size: 25px;">Uhh...</span><br />There was an
+    unexpected error. Please restart the page.<br />
+    <div id="errorMsg"></div>
+  </div>
+</div>
+<div class="debugContainer"><div id="debug"></div></div>
+<div id="games">
+  <button title="National Pokedex" id="national" onclick="getPokemon(1)">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/3/39/Pokeball.PNG"
+    />
+  </button>
+  <button title="Kanto Region" id="kanto" onclick="getPokemon(2)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonRed.png"
+    />
+	  <img
+      src="https://u.cubeupload.com/2tables/PokemonBlue.png"
+    />
+	  <img
+      src="https://u.cubeupload.com/2tables/PokemonYellow.png"
+    />
+  </button>
+  <button title="Johto Region" id="extended-johto" onclick="getPokemon(7)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonGold.png"
+    />
+	  <img
+      src="https://u.cubeupload.com/2tables/PokemonSilver.png"
+    />
+  </button>
+  <button title="Hoenn Region" id="updated-hoenn" onclick="getPokemon(15)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonRuby.png"
+    /><img
+      src="https://u.cubeupload.com/2tables/PokemonSapphire.png"
+    /><img
+      src="https://u.cubeupload.com/2tables/PokemonEmerald.jpg"
+    />
+  </button>
+  <button title="Sinnoh Region" id="extended-sinnoh" onclick="getPokemon(6)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonDiamond.png"
+    /><img
+      src="https://u.cubeupload.com/2tables/PokemonPearl.png"
+    />
+  </button>
+  <button title="Unova Region" id="updated-unova" onclick="getPokemon(9)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonBlack.png"
+    /><img
+      src="https://u.cubeupload.com/2tables/PokemonWhite.png"
+    />
+	  
+  </button>
+  <button title="Kalos Region" id="kalos-central" onclick="getPokemon(12)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonX.png"
+    /><img
+      src="https://u.cubeupload.com/2tables/PokemonY.png"
+    />
+  </button>
+  <button title="Lumiose City" id="lumiose-city" onclick="getPokemon(34)">
+    <img
+      src="https://u.cubeupload.com/2tables/PokemonLegendsZA.png"
+    />
+  </button>
+</div>
+<div class="pokemons"><div id="pokemons"></div></div>
+<div id="padding">a</div>
+<div id="highlight"></div>
+<div id="cache"></div>
+<script src="main.js"></script>
+    </body>
+</html>

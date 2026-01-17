@@ -1,0 +1,309 @@
+/* ============================================================
+   POKÉDEX OS — GLOBAL SETTINGS & THEME LAYER
+   ============================================================ */
+
+/* Game Boy–style font */
+@font-face {
+  font-family: "gameboy";
+  src: url(https://codehs.com/uploads/e8608017cc02c40fa7f043cc85ddb262);
+}
+
+/* Global reset + base theme */
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Pointer cursor for all buttons */
+button {
+  cursor: pointer;
+}
+
+/* ============================================================
+   GLOBAL CRT OVERLAY (APPLIED TO ENTIRE DEVICE)
+   ============================================================ */
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  z-index: 9999;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* ============================================================
+   MAIN LAYOUT REGIONS
+   ============================================================ */
+
+/* Scrollable Pokémon list */
+#pokemons {
+  margin: 2.5px;
+  height: calc(100vh - 205px);
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Padding element under highlight panel */
+#padding {
+  display: grid;
+  width: 100vw;
+  height: 150px;
+  background: black;
+}
+
+/* Fixed highlight panel at bottom */
+#highlight {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 150px;
+  background: black;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ============================================================
+   POKÉMON GRID BUTTONS
+   ============================================================ */
+
+.pokemon {
+  margin: 2.5px;
+  background: black;
+  color: white;
+  border: 2px solid white;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+	text-transform: capitalize;
+	z-index: 2
+}
+.caught {
+  border-color: gold;
+  opacity: 0.7;
+}
+.caughtCorner {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+	z-index: 4;
+}
+
+.caughtMini {
+  width: 14px;
+  height: 14px;
+  accent-color: #4caf50; /* green LED vibe */
+}
+
+.pokemon {
+  position: relative; /* required for corner placement */
+}
+
+.pokemon.caught {
+  border-color: gold;
+  opacity: 0.75;
+}
+
+/* Pokémon sprite inside grid */
+.pokemon img {
+  image-rendering: pixelated;
+  width: 25px;
+  transform: scale(4);
+	z-index: 3
+}
+
+/* Highlight panel sprite (mirrored + scaled) */
+#highlight img {
+  image-rendering: pixelated;
+  transform: scale(-2, 2) translate(5px, 0);
+}
+
+/* ============================================================
+   HIGHLIGHT PANEL CONTENT
+   ============================================================ */
+
+.this {
+  display: flex;
+}
+
+/* Name + sprite section */
+.section {
+  display: flex;
+  font-size: 25px;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+/* Stats + height/weight section */
+.section2 {
+  display: grid;
+  padding: 5px 0 0 5px;
+  margin: 5px 0 0 5px;
+  font-size: 15px;
+  border-left: 1px solid white;
+  height: calc(100% - 15px);
+}
+
+/* ============================================================
+   TYPE BADGES
+   ============================================================ */
+
+.types {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.type {
+  background-size: 100% 100% !important;
+  background: black;
+  border: 1px solid grey;
+  width: 75px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+/* ============================================================
+   DESCRIPTION BOX
+   ============================================================ */
+
+.desc {
+  color: #435f1c;
+  background: #678d04;
+  padding: 5px;
+  font-family: Consolas, monospace;
+  box-shadow: -5px -5px 10px #435f1c inset;
+  height: 125px;
+  width: 175px;
+  overflow: hidden;
+}
+
+.scroll {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
+   STATS PANEL
+   ============================================================ */
+
+.stats {
+  display: flex;
+  font-size: 12px;
+  background: #dddddd;
+  box-shadow: -5px -5px 10px #aaaaaa inset;
+  color: black;
+}
+
+.stats span {
+  padding: 2.5px;
+  border-right: 1px solid black;
+}
+
+/* ============================================================
+   ERROR SCREEN (FULLSCREEN OVERLAY)
+   ============================================================ */
+
+#error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000; /* Above CRT overlay */
+  text-align: center;
+  visibility: hidden;
+  font-size: 17px;
+}
+
+#errorMsg {
+  font-size: 15px;
+  color: grey;
+}
+
+/* ============================================================
+   DEBUG PANEL
+   ============================================================ */
+
+.debugContainer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  overflow: auto;
+  padding: 10px;
+  height: 100px;
+}
+
+#debug {
+  overflow: scroll;
+}
+
+/* ============================================================
+   GAME SELECTOR
+   ============================================================ */
+
+#games {
+  display: flex;
+}
+
+#games button {
+  display: flex;
+  background: black;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#games button img {
+	
+  image-rendering: pixelated;
+  height: 50px;
+  transition: transform 0.1s ease-in-out;
+	z-index: 99;
+}
+
+#games button img:hover {
+	z-index: 100;
+  transform: scale(2) translateY(25%);
+}
