@@ -108,12 +108,12 @@ async function showPkmn(index) {
 		${pokemonData.name}
 	</div>
   <div class="types">
-    <span class="type" style="background: url(https://u.cubeupload.com/2tables/${
+    <span class="type" style="background: url(types/${
       pokemonData.types[0].type.name
     }.png)"></span>
     <span class="type" ${
       pokemonData.types.length !== 1
-        ? `style="background: url(https://u.cubeupload.com/2tables/${
+        ? `style="background: url(types/${
             pokemonData.types[1].type.name
           }.png)"`
         : ""
